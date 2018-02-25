@@ -2,6 +2,7 @@ package com.codecool.krk.controller;
 
 import com.codecool.krk.model.Timer;
 import com.codecool.krk.model.TimerFactory;
+import com.codecool.krk.model.TimerType;
 import com.codecool.krk.service.TimerService;
 import com.codecool.krk.view.TimerView;
 import com.codecool.krk.view.TimerViewImpl;
@@ -33,7 +34,7 @@ public class TimerControllerImpl implements TimerController {
 
                 switch (getUserChoice(userInput)) {
                     case START:
-                        createTimer(userInput);
+                        createTimer(userInput, TimerType.BASIC);
                         break;
                     case CHECK:
                         this.timerService.checkTimer(userInput);
@@ -74,10 +75,10 @@ public class TimerControllerImpl implements TimerController {
         timerViewImpl.setBufferedReader(bufferedReader);
     }
 
-    private void createTimer(String[] userInput) {
+    private void createTimer(String[] userInput, TimerType timerType) {
         try {
             this.timerService.validateArgumentsNumber(userInput, "Timer name no specified");
-            timerFactory.createTimer(userInput);
+            timerFactory.createTimer(userInput, timerType);
         } catch (IllegalArgumentException e) {
             this.timerView.displayMessage(e.getMessage());
         }

@@ -10,7 +10,17 @@ public class TimerFactoryImpl implements TimerFactory {
     }
 
     @Override
-    public void createTimer(String[] userInput) {
+    public void createTimer(String[] userInput, TimerType timerType) throws IllegalArgumentException {
+        switch (timerType) {
+            case BASIC:
+                createTimer(userInput);
+                break;
+            default:
+                throw  new IllegalArgumentException("No such timer type");
+        }
+    }
+
+    private void createTimer(String[] userInput) {
         String timerName = userInput[1];
         Timer existingTimer = this.timerService.findTimer(timerName);
 
@@ -23,7 +33,7 @@ public class TimerFactoryImpl implements TimerFactory {
 
     private void restartTimer(Timer existingTimer, String timerName) {
         if (!existingTimer.isNotInterrupted()) {
-            Timer newTimer = new Timer(timerName, existingTimer.getSeconds());
+            Timer newTimer = new BasicTimer(timerName, existingTimer.getSeconds());
 
             int timerIndex = Timer.getTimers().indexOf(existingTimer);
             Timer.getTimers().set(timerIndex, newTimer);
@@ -33,7 +43,7 @@ public class TimerFactoryImpl implements TimerFactory {
     }
 
     private void createNewTimer(String timerName) {
-        Timer newTimer = new Timer(timerName);
+        Timer newTimer = new BasicTimer(timerName);
         Timer.getTimers().add(newTimer);
         newTimer.start();
     }

@@ -3,12 +3,12 @@ package com.codecool.krk.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Timer extends Thread {
+public abstract class Timer extends Thread{
     private static List<Timer> timers = new LinkedList<>();
 
-    private int seconds;
+    protected int seconds;
     // declared due to default implemented flag isInterrupted do not work correctly
-    private boolean notInterrupted;
+    protected boolean notInterrupted;
 
     public Timer(String name) {
         super(name);
@@ -37,18 +37,7 @@ public class Timer extends Thread {
     }
 
     @Override
-    public void run() {
-        while (true) {
-            try {
-                this.seconds++;
-                this.sleep(1000);
-            } catch (InterruptedException e) {
-                this.interrupt();
-                this.notInterrupted = false;
-                break;
-            }
-        }
-    }
+    public abstract void run();
 
     @Override
     public String toString() {
