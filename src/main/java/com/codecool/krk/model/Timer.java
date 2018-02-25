@@ -3,7 +3,7 @@ package com.codecool.krk.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Timer extends Thread{
+public abstract class Timer extends Thread {
     protected static List<Timer> timers = new LinkedList<>();
 
     protected int seconds;
