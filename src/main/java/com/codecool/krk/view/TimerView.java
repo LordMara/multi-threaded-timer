@@ -1,5 +1,6 @@
 package com.codecool.krk.view;
 
+import com.codecool.krk.controller.MenuOption;
 import com.codecool.krk.model.Timer;
 
 import java.io.IOException;
@@ -13,4 +14,6 @@ public interface TimerView {
     void displayTimer(Timer timer);
 
     void displayTimers(List<Timer> timers);
+
+    MenuOption getUserChoice(String[] userInput);
 }

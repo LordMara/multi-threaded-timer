@@ -32,7 +32,7 @@ public class TimerControllerImpl implements TimerController {
             do {
                 String[] userInput = this.timerView.getUserInput();
 
-                switch (getUserChoice(userInput)) {
+                switch (this.timerView.getUserChoice(userInput)) {
                     case START:
                         createTimer(userInput, TimerType.BASIC);
                         break;
@@ -56,18 +56,6 @@ public class TimerControllerImpl implements TimerController {
         }
 
         this.timerView.displayTimers(Timer.getTimers());
-    }
-
-    private MenuOption getUserChoice(String[] userInput) {
-        MenuOption userChoice;
-
-        try {
-            userChoice = MenuOption.valueOf(userInput[0].toUpperCase());
-        } catch (IllegalArgumentException e) {
-            userChoice = MenuOption.NOT_VALID;
-        }
-
-        return userChoice;
     }
 
     private void setupView(BufferedReader bufferedReader) {

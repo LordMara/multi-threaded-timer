@@ -1,5 +1,6 @@
 package com.codecool.krk.view;
 
+import com.codecool.krk.controller.MenuOption;
 import com.codecool.krk.model.Timer;
 
 import java.io.BufferedReader;
@@ -34,5 +35,18 @@ public class TimerViewImpl implements TimerView {
         for (Timer timer: timers) {
             System.out.println(timer);
         }
+    }
+
+    @Override
+    public MenuOption getUserChoice(String[] userInput) {
+        MenuOption userChoice;
+
+        try {
+            userChoice = MenuOption.valueOf(userInput[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            userChoice = MenuOption.NOT_VALID;
+        }
+
+        return userChoice;
     }
 }
