@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Timer extends Thread{
-    private static List<Timer> timers = new LinkedList<>();
+    protected static List<Timer> timers = new LinkedList<>();
 
     protected int seconds;
     // declared due to default implemented flag isInterrupted do not work correctly
