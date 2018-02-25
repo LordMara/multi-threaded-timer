@@ -16,9 +16,7 @@ public class TimerFactory {
         if (existingTimer != null) {
             restartTimer(existingTimer, timerName);
         } else {
-            Timer newTimer = new Timer(timerName);
-            Timer.getTimers().add(newTimer);
-            newTimer.start();
+            createNewTimer(timerName);
         }
     }
 
@@ -31,5 +29,11 @@ public class TimerFactory {
 
             newTimer.start();
         }
+    }
+
+    private void createNewTimer(String timerName) {
+        Timer newTimer = new Timer(timerName);
+        Timer.getTimers().add(newTimer);
+        newTimer.start();
     }
 }
