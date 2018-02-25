@@ -24,8 +24,7 @@ public class TimerControllerImpl implements TimerController {
     @Override
     public void chooseOption() {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-            TimerViewImpl timerViewImpl = (TimerViewImpl) this.timerView;
-            timerViewImpl.setBufferedReader(bufferedReader);
+            setupView(bufferedReader);
 
             boolean exitApplication = false;
 
@@ -64,10 +63,15 @@ public class TimerControllerImpl implements TimerController {
         try {
             userChoice = MenuOption.valueOf(userInput[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            userChoice = MenuOption.NOTVALID;
+            userChoice = MenuOption.NOT_VALID;
         }
 
         return userChoice;
+    }
+
+    private void setupView(BufferedReader bufferedReader) {
+        TimerViewImpl timerViewImpl = (TimerViewImpl) this.timerView;
+        timerViewImpl.setBufferedReader(bufferedReader);
     }
 
     private void createTimer(String[] userInput) {
