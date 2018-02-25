@@ -28,19 +28,19 @@ public class TimerController {
 
             do {
                 String[] userInput = this.timerView.getUserInput();
-                String command = userInput[0].toUpperCase();
+                MenuOption userChoice = MenuOption.valueOf(userInput[0].toUpperCase());
 
-                switch (command) {
-                    case "START":
+                switch (userChoice) {
+                    case START:
                         createTimer(userInput);
                         break;
-                    case "CHECK":
+                    case CHECK:
                         this.timerService.checkTimer(userInput);
                         break;
-                    case "STOP":
+                    case STOP:
                         stopTimer(userInput);
                         break;
-                    case "EXIT":
+                    case EXIT:
                         exitApplication = this.timerService.interruptAllTimers();
                         break;
                     default:
