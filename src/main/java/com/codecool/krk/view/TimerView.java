@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface TimerView {
-
     String[] getUserInput() throws IOException;
 
     void displayMessage(String message);
