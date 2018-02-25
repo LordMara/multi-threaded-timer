@@ -6,29 +6,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
-public class TimerView {
-    private BufferedReader bufferedReader;
+public interface TimerView {
+//    void setBufferedReader(BufferedReader bufferedReader);
 
-    public void setBufferedReader(BufferedReader bufferedReader) {
-        this.bufferedReader = bufferedReader;
-    }
+    String[] getUserInput() throws IOException;
 
-    public String[] getUserInput() throws IOException{
-        String[] userInput = this.bufferedReader.readLine().split("\\s+",2);
-        return userInput;
-    }
+    void displayMessage(String message);
 
-    public void displayMessage(String message) {
-        System.out.println(message);
-    }
+    void displayTimer(Timer timer);
 
-    public void displayTimer(Timer timer) {
-        System.out.println(timer);
-    }
-
-    public void displayTimers(List<Timer> timers) {
-        for (Timer timer: timers) {
-            System.out.println(timer);
-        }
-    }
+    void displayTimers(List<Timer> timers);
 }
