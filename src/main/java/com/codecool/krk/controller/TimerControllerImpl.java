@@ -80,7 +80,8 @@ public class TimerControllerImpl implements TimerController {
                 String timerName = userInput[1];
                 this.timerView.displayMessage(String.format("%s received interrupt while sleeping", timerName));
             } else {
-                this.timerView.displayMessage("Operation unsuccessful due to wrong timer name or timer already stopped");
+                this.timerView.displayMessage("Operation unsuccessful" +
+                        " due to wrong timer name or timer already stopped");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
